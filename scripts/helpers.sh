@@ -24,6 +24,11 @@ set_tmux_option() {
 # Resolves to the plugin's own .cache/ directory by default.
 # Override with $CLAUDE_USAGE_CACHE if needed.
 
+
+# Since I run multiple tmux env's with different config locations,
+# this file needs to be centralized
+CLAUDE_USAGE_CACHE="${CLAUDE_USAGE_CACHE:-$HOME/tmp/claude-usage.json}"
+
 PLUGIN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 _claude_cache_file() {
