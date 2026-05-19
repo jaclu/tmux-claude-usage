@@ -2,7 +2,8 @@
 # Generic field reader: extracts a value from the cached JSON.
 # Usage: field.sh <jq_path> [format]
 # Formats: percent, cost, tokens, raw (default)
-CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# shellcheck source=scripts/helpers.sh
 source "$CURRENT_DIR/helpers.sh"
 
 expr="$1"
@@ -10,19 +11,19 @@ format="${2:-raw}"
 
 val=$(_claude_read_field "$expr")
 
-if [ -z "$val" ]; then
-  case "$format" in
-    percent)       echo "–" ;;
-    color_percent) printf '#[fg=colour242]' ;;
-    *)             exit 0 ;;
-  esac
-  exit 0
+if [[ -z "$val" ]]; then
+    case "$format" in
+        percent) echo "–" ;;
+        color_percent) printf '#[fg=colour242]' ;;
+        *) exit 0 ;;
+    esac
+    exit 0
 fi
 
 case "$format" in
-  percent)       _claude_format_percent "$val" ;;
-  color_percent) _claude_format_color_percent "$val" ;;
-  cost)          _claude_format_cost "$val" ;;
-  tokens)        _claude_format_tokens "$val" ;;
-  *)             echo "$val" ;;
+    percent) _claude_format_percent "$val" ;;
+    color_percent) _claude_format_color_percent "$val" ;;
+    cost) _claude_format_cost "$val" ;;
+    tokens) _claude_format_tokens "$val" ;;
+    *) echo "$val" ;;
 esac

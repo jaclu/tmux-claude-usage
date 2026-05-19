@@ -3,8 +3,9 @@
 # instead of leaking from a live tmux session.
 
 stub_tmux() {
-  mkdir -p "$BATS_TEST_TMPDIR/bin"
-  printf '#!/usr/bin/env bash\nexit 1\n' > "$BATS_TEST_TMPDIR/bin/tmux"
-  chmod +x "$BATS_TEST_TMPDIR/bin/tmux"
-  export PATH="$BATS_TEST_TMPDIR/bin:$PATH"
+    # shellcheck disable=SC2154 # BATS_TEST_TMPDIR defined by bats framework
+    mkdir -p "$BATS_TEST_TMPDIR/bin"
+    printf '#!/usr/bin/env bash\nexit 1\n' >"$BATS_TEST_TMPDIR/bin/tmux"
+    chmod +x "$BATS_TEST_TMPDIR/bin/tmux"
+    export PATH="$BATS_TEST_TMPDIR/bin:$PATH"
 }
