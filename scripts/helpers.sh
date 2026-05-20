@@ -28,10 +28,8 @@ set_tmux_option() {
 # this file needs to be centralized
 CLAUDE_USAGE_CACHE="${CLAUDE_USAGE_CACHE:-$HOME/tmp/claude-usage.json}"
 
-PLUGIN_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-
 _claude_cache_file() {
-    echo "${CLAUDE_USAGE_CACHE:-$PLUGIN_DIR/claude-usage.json}"
+    echo "$CLAUDE_USAGE_CACHE"
 }
 
 # --- JSON parser detection ---
