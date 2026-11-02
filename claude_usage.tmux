@@ -35,7 +35,13 @@ _interpolation_args() {
     esac
 }
 
-INTERPOLATION_TOKENS="claude_5h_percent claude_5h_color claude_7d_percent claude_7d_color claude_cost claude_lines_added claude_lines_removed claude_context_percent claude_context_color claude_context_remaining claude_model claude_model_id claude_version claude_cwd claude_project"
+INTERPOLATION_TOKENS="claude_5h_percent claude_5h_color"
+INTERPOLATION_TOKENS+=" claude_7d_percent claude_7d_color"
+INTERPOLATION_TOKENS+=" claude_cost claude_lines_added claude_lines_removed"
+INTERPOLATION_TOKENS+=" claude_context_percent claude_context_color"
+INTERPOLATION_TOKENS+=" claude_context_remaining"
+INTERPOLATION_TOKENS+=" claude_model claude_model_id claude_version"
+INTERPOLATION_TOKENS+=" claude_cwd claude_project"
 
 do_interpolation() {
     local output="$1"
